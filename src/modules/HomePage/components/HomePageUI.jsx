@@ -39,7 +39,7 @@ class HomePageUI extends React.Component {
 			onItemsUpdateRequest
     } = this.props;
 		return (
-			<React.Fragment>
+			<div style={{ padding: '0 24px' }}>
         <Breadcrumb>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>
@@ -70,7 +70,7 @@ class HomePageUI extends React.Component {
 						}
 					</div>
 				</Card>
-			</React.Fragment>	
+			</div>	
 		);
 	}  
 }

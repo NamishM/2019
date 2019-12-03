@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import BasicLayout from './layouts/BasicLayout';
+import { AppRouter } from './router/router';
 
 function App() {
   return (
     <div className="App">
-      <BasicLayout />
+      <AppRouter />
     </div>
   );
 }

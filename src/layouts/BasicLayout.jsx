@@ -1,6 +1,5 @@
 import ProLayout from '@ant-design/pro-layout';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import RightContent from '../contentType/RightContent';
 import AppMenu from '../modules/Common/components/AppMenu';
 
@@ -18,8 +17,9 @@ const BasicLayout = props => {
 				return <AppMenu />
 			}}
 			footerRender={footerRender}
-			rightContentRender={rightProps => <RightContent />}
-		/>
+		>
+			{props.children}
+		</ProLayout>	
 	);
 };
 

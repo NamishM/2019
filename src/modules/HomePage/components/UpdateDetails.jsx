@@ -43,26 +43,26 @@ class UpdateDetails extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        const updatedItem = {
+          id: this.props.operation === 'Add' ? uuidv4() : this.props.editRowDetails.id,
+          name: this.state.name,
+          phoneNumber: `+91-${this.state.phoneNumber.slice(0,3)}-${this.state.phoneNumber.slice(3,6)}-${this.state.phoneNumber.slice(6)}`,
+          emaiId: this.state.email,
+          gender: this.state.gender,
+          locations: this.state.location
+        };
+        let arr = this.props.listingItems;
+        if (this.props.operation === 'Add') {
+          arr.push(updatedItem);
+        } else {
+          const index = arr.findIndex(item => item.id === this.props.editRowDetails.id);
+          arr.splice(index, 1, updatedItem)
+        }
+        this.props.onItemsUpdateRequest(arr);
+        this.props.myCallback();
       }
     });
-    const updatedItem = {
-      id: this.props.operation === 'Add' ? uuidv4() : this.props.editRowDetails.id,
-      name: this.state.name,
-      phoneNumber: `+91-${this.state.phoneNumber.slice(0,3)}-${this.state.phoneNumber.slice(3,6)}-${this.state.phoneNumber.slice(6)}`,
-      emaiId: this.state.email,
-      gender: this.state.gender,
-      locations: this.state.location
-    };
-    let arr = this.props.listingItems;
-    if (this.props.operation === 'Add') {
-      arr.push(updatedItem);
-    } else {
-      const index = arr.findIndex(item => item.id === this.props.editRowDetails.id);
-      arr.splice(index, 1, updatedItem)
-    }
-    this.props.onItemsUpdateRequest(arr);
-    this.props.myCallback();
+    
   };
   nameChange = (e) => {
     this.setState({ name: e.target.value })
